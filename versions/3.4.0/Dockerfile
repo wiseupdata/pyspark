@@ -106,7 +106,7 @@ RUN echo " " >> /etc/bash.bashrc
 ##############################################################################
 # Copy yours extra Jars
 ##############################################################################
-RUN cp ./jars/* /opt/spark/jars/
+COPY jars/* /opt/spark/jars/
 
 CMD ["/bin/bash"]
 
