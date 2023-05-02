@@ -177,6 +177,7 @@ docker login -u wiseupdata
 docker tag pyspark wiseupdata/pyspark
 docker tag pyspark wiseupdata/pyspark:3.4.0
 docker tag pyspark wiseupdata/pyspark:3.4.0-ubuntu-23.04
+docker tag pyspark wiseupdata/pyspark:3.4.0-ubuntu-23.04-jdk8
 ```
 
 - push your image to dockerhub ♨️
@@ -184,6 +185,7 @@ docker tag pyspark wiseupdata/pyspark:3.4.0-ubuntu-23.04
 docker push wiseupdata/pyspark
 docker push wiseupdata/pyspark:3.4.0
 docker push wiseupdata/pyspark:3.4.0-ubuntu-23.04
+docker push wiseupdata/pyspark:3.4.0-ubuntu-23.04-jdk8
 ```
 
 ### Test the image 🎢
