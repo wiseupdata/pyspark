@@ -36,6 +36,7 @@ docker run -it -u ubuntu wiseupdata/python bash
 
 - Versions 🐍
   - <p align="left"><a href="#version-3.9">3.9</a></p>
+  - <p align="left"><a href="#version-3.9">3.11</a></p>
 - Utils 🛠️
   - <p align="left"><a href="#ref_util">Utils</a></p>
   - <p align="left"><a href="#ref_build">Create your own image to dockerhub</a></p>
@@ -53,7 +54,8 @@ docker run -it -u ubuntu wiseupdata/python bash
 - User`ubuntu` with sudo, no password
 - Made with A.I. contribution 🤖 
 - [Dockerfile](https://github.com/wiseupdata/python/blob/dev/versions/3.9/Dockerfile)
-> This setup it's the same for the tags: 3.9, 3.11 and python:3.9-ubuntu-23.04
+
+  > This setup it's the same for the tags: 3.9, 3.11 and python:3.9-ubuntu-23.04
 
 <br>
 
