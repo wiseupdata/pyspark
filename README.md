@@ -35,15 +35,70 @@ docker run -it -u ubuntu wiseupdata/python bash
 # Summary 📃
 
 - Versions info 🐍
+  - <p align="left"><a href="#version-3.11">3.11</a></p>
+  - <p align="left"><a href="#version-3.10">3.10</a></p>
   - <p align="left"><a href="#version-3.9">3.9</a></p>
-  - <p align="left"><a href="#version-3.9">3.11</a></p>
+
+ 
 - Utils 🛠️
   - <p align="left"><a href="#ref_util">Utils</a></p>
   - <p align="left"><a href="#ref_build">Create your own image to dockerhub</a></p>
   - <p align="left"><a href="#ref_references">References</a></p>
-  - [DockerHub versions](https://hub.docker.com/r/wiseupdata/python/tags)
+  - [Dockerhub versions](https://hub.docker.com/r/wiseupdata/python/tags)
 
 
+<br>
+
+<a name="version-3.11"></a>
+
+## Version 3.11 ✨️
+
+- Python 3.11 
+- Ubuntu 23.04 Luna - Official
+- User`ubuntu` with sudo, no password
+- Made with A.I. contribution 🤖 
+- [Dockerfile](https://github.com/wiseupdata/python/blob/main/versions/3.11/Dockerfile)
+
+  > This setup it's the same for the tags: 3.11 and 3.11-ubuntu-23.04
+
+<br>
+
+Example with specific version 💻:
+```shell
+docker run -it -u ubuntu wiseupdata/python:3.11 bash
+docker run -it -u ubuntu wiseupdata/python:3.11-ubuntu-23.04 bash
+```
+
+### Info 🔎
+- Python 3.11 it's official from `www.python.org`
+  - To use python 3.11 just type:  `python`
+
+
+<br>
+
+<a name="version-3.10"></a>
+
+## Version 3.10 ✨️
+
+- Python 3.10
+- Ubuntu 23.04 Luna - Official
+- User`ubuntu` with sudo, no password
+- Made with A.I. contribution 🤖 
+- [Dockerfile](https://github.com/wiseupdata/python/blob/main/versions/3.10/Dockerfile)
+
+  > This setup it's the same for the tags: 3.10 and 3.10-ubuntu-23.04
+
+<br>
+
+Example with specific version 💻:
+```shell
+docker run -it -u ubuntu wiseupdata/python:3.10 bash
+docker run -it -u ubuntu wiseupdata/python:3.10-ubuntu-23.04 bash
+```
+
+### Info 🔎
+- Python 3.10 it's official from `www.python.org`
+  - To use python 3.10 just type:  `python`
 
 <br>
 
@@ -52,29 +107,24 @@ docker run -it -u ubuntu wiseupdata/python bash
 ## Version 3.9 ✨️
 
 - Python 3.9
-- Python 3.11 
 - Ubuntu 23.04 Luna - Official
 - User`ubuntu` with sudo, no password
 - Made with A.I. contribution 🤖 
-- [Dockerfile](https://github.com/wiseupdata/python/blob/dev/versions/3.9/Dockerfile)
+- [Dockerfile](https://github.com/wiseupdata/python/blob/main/versions/3.9/Dockerfile)
 
-  > This setup it's the same for the tags: 3.9, 3.11 and python:3.9-ubuntu-23.04
+  > This setup it's the same for the tags: 3.9 and 3.9-ubuntu-23.04
 
 <br>
 
 Example with specific version 💻:
 ```shell
 docker run -it -u ubuntu wiseupdata/python:3.9 bash
-docker run -it -u ubuntu wiseupdata/python:3.11 bash
 docker run -it -u ubuntu wiseupdata/python:3.9-ubuntu-23.04 bash
 ```
-
 
 ### Info 🔎
 - Python 3.9 it's official from `www.python.org`
   - To use python 3.9 just type:  `python`
-- Python 3.11 it's native to Ubuntu Luna
-  - To use python 3.11 just type:  `python3`
 
 
 <br>
@@ -94,7 +144,7 @@ click here!▶️
 - Build the image
 
 ```shell
-docker build -t python ./versions/3.9
+docker build -t python ./versions/3.11
 ```
 - Test the image
 ```shell
@@ -111,22 +161,21 @@ docker login -u wiseupdata
 
 ```shell
 docker tag python wiseupdata/python
-docker tag python wiseupdata/python:3.9
 docker tag python wiseupdata/python:3.11
+docker tag python wiseupdata/python:3.11-ubuntu-23.04
 ```
 
 - push your image to dockerhub ♨️
 ```shell
-docker push wiseupdata/python:
-docker push wiseupdata/python:3.9
+docker push wiseupdata/python
 docker push wiseupdata/python:3.11
-docker push wiseupdata/python:3.9-ubuntu-23.04
+docker push wiseupdata/python:3.11-ubuntu-23.04
 ```
 
 ### Test the image 🎢
 
 ```shell
-docker run -it -u ubuntu wiseupdata/3.9 bash
+docker run -it -u ubuntu wiseupdata/python:3.11 bash
 ```
 </details>
 
