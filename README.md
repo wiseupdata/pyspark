@@ -15,6 +15,7 @@
 ![license](https://img.shields.io/github/license/wiseupdata/python)
 
 ---
+<a name="readme-top"></a>
 
 <h1>
 <img align="left" alt="Docker image" src="https://raw.githubusercontent.com/wiseupdata/python/main/assets/imgs/docker.png" width="100" />
@@ -29,6 +30,25 @@ Python docker images! 🚀️
 docker run -it -u ubuntu wiseupdata/python bash
 ```
 
+<br>
+
+# Summary 📃
+
+- Versions info 🐍
+  - <p align="left"><a href="#version-3.9">3.9</a></p>
+  - <p align="left"><a href="#version-3.9">3.11</a></p>
+- Utils 🛠️
+  - <p align="left"><a href="#ref_util">Utils</a></p>
+  - <p align="left"><a href="#ref_build">Create your own image to dockerhub</a></p>
+  - <p align="left"><a href="#ref_references">References</a></p>
+  - [DockerHub versions](https://hub.docker.com/r/wiseupdata/python/tags)
+
+
+
+<br>
+
+<a name="version-3.9"></a>
+
 ## Version 3.9 ✨️
 
 - Python 3.9
@@ -36,8 +56,9 @@ docker run -it -u ubuntu wiseupdata/python bash
 - Ubuntu 23.04 Luna - Official
 - User`ubuntu` with sudo, no password
 - Made with A.I. contribution 🤖 
+- [Dockerfile](https://github.com/wiseupdata/python/blob/dev/versions/3.9/Dockerfile)
 
-> This setup it's the same for the tags: 3.9, 3.11 and python:3.9-ubuntu-23.04
+  > This setup it's the same for the tags: 3.9, 3.11 and python:3.9-ubuntu-23.04
 
 <br>
 
@@ -56,6 +77,8 @@ docker run -it -u ubuntu wiseupdata/python:3.9
 
 <br>
 
+<a name="ref_build"></a>
+
 # Create your own image to dockerhub 🥳
 <details>
 <summary>
@@ -69,7 +92,7 @@ click here!▶️
 - Build the image
 
 ```shell
-docker build -t python .
+docker build -t python ./versions/3.9
 ```
 - Test the image
 ```shell
@@ -98,7 +121,7 @@ docker push wiseupdata/python:3.11
 docker push wiseupdata/python:3.9-ubuntu-23.04
 ```
 
-# Test the image 🎢
+### Test the image 🎢
 
 ```shell
 docker run -it -u ubuntu wiseupdata/3.9 bash
@@ -106,6 +129,8 @@ docker run -it -u ubuntu wiseupdata/3.9 bash
 </details>
 
 <br>
+
+<a name="ref_util"></a>
 
 # Utils 🎁 
 <details>
@@ -142,9 +167,12 @@ docker image rm  $(docker image ls -a ) -f
 <br>
 <br>
 
+
 ---
 <br>
 <br>
+
+<a name="ref_references"></a>
 
 # References 🌍 🗄️
 
@@ -155,9 +183,10 @@ docker image rm  $(docker image ls -a ) -f
 
 <br>
 <br>
+
 ---
 
-#### Maintainer 🤗 👨‍💻
+## Maintainer 🤗 👨‍💻
 
 Sivio Liborio
 
@@ -167,6 +196,7 @@ Sivio Liborio
 </a>
 
 <br>
+<p align="right"><a href="#readme-top">back to top ⏫ </a></p>
 <br>
 <br>
 <br>
