@@ -70,6 +70,14 @@ RUN cd /opt && \
     rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 
 RUN export SPARK_HOME=/opt/spark
+ENV SPARK_HOME=/opt/spark
+
+# Add Spark bin directory to PATH
+ENV PATH=$PATH:$SPARK_HOME/bin
+
+# Create symbolic links for spark-shell and pyspark
+RUN ln -s $SPARK_HOME/bin/spark-shell /usr/local/bin/spark && \
+    ln -s $SPARK_HOME/bin/pyspark /usr/local/bin/pyspark
 
 
 ##############################################################################
@@ -95,4 +103,10 @@ RUN echo "export PYSPARK_DRIVER_PYTHON=/usr/local/bin/python" >> /etc/bash.bashr
 RUN echo "export PYLIB=$SPARK_HOME/python/lib" >> /etc/bash.bashrc
 RUN echo " " >> /etc/bash.bashrc
 
+##############################################################################
+# Copy yours extra Jars
+##############################################################################
+RUN cp ./jars/* /opt/spark/jars/
+
 CMD ["/bin/bash"]
+

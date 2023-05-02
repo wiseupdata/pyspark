@@ -26,7 +26,7 @@ Pyspark docker images! 🚀️
 
 # Simple to use ❤️
 
-```shell
+```bash
 docker run -it -u ubuntu wiseupdata/pyspark bash
 ```
 
@@ -52,8 +52,11 @@ docker run -it -u ubuntu wiseupdata/pyspark bash
 - Pyspark 3.4.0 
 - Ubuntu 23.04 Luna - Official
 - Python 3.10 - Official
-- OpenJDK8 - (Official)(https://adoptium.net/download/)
+- OpenJDK8 - [Official](https://adoptium.net/download/)
 - User`ubuntu` with sudo, no password
+- Simple shell, type:
+  - `python` or `pyspark` and have fun with Python and Spark! ❤️
+  - `spark` and have fun with Scala and Spark! 🫀
 - Made with A.I. contribution 🤖 
 - [Dockerfile](https://github.com/wiseupdata/pyspark/blob/main/versions/3.4.0/Dockerfile)
 
@@ -62,14 +65,82 @@ docker run -it -u ubuntu wiseupdata/pyspark bash
 <br>
 
 Example with specific version 💻:
-```shell
+```bash
 docker run -it -u ubuntu wiseupdata/pyspark:3.4.0 bash
 docker run -it -u ubuntu wiseupdata/pyspark:3.4.0-ubuntu-23.04 bash
 ```
 
+### Inside made easy! 😍
+#### Type pyspark and enjoy Python with Spark!
+
+```bash
+pyspark
+```
+
+```bash
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 3.4.0
+      /_/
+
+Using Python version 3.10.11 (main, May  2 2023 14:04:10)
+```
+
+#### Type spark and enjoy it Scala with Spark!
+```bash
+pyspark
+```
+
+```bash
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 3.4.0
+      /_/
+         
+Using Scala version 2.12.17 (OpenJDK 64-Bit Server VM, Java 1.8.0_372)
+```
+
+
 ### Info 🔎
 - Pyspark 3.4.0 it's official from [spark.apache.org](https://spark.apache.org/downloads.html)
   - To use pyspark 3.4.0 just type:  `pyspark`
+
+### Tests 🧪
+
+#### Pyspark
+
+Type  `python` or `pyspark` and test!
+
+```python
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("TestPySpark").getOrCreate()
+data = [("Alice", 1), ("Bob", 2), ("Charlie", 3)]
+df = spark.createDataFrame(data, ["Name", "Age"])
+df.show()
+
+spark.stop()
+exit()
+```
+
+#### Scala
+
+Type  `spark` and test!
+
+```scala
+import org.apache.spark.sql.SparkSession
+
+val spark = SparkSession.builder.appName("Spark Scala Test").getOrCreate()
+val df = Seq((1, "John"), (2, "Jane"), (3, "Jim")).toDF("id", "name")
+df.show()
+
+spark.stop()
+:quit
+```
 
 
 <a name="ref_build"></a>
@@ -86,30 +157,30 @@ click here!▶️
 - Update the `Dockerfile` and run the command bellow
 - Build the image
 
-```shell
+```bash
 docker build -t pyspark ./versions/3.4.0
 ```
 - Test the image
-```shell
+```bash
 docker run -it --rm pyspark bash
 ```
 
 - Log in to your account 🤜
 
-```shell
+```bash
 docker login -u wiseupdata
 ```
 
 - Create a tag 🤺
 
-```shell
+```bash
 docker tag pyspark wiseupdata/pyspark
 docker tag pyspark wiseupdata/pyspark:3.4.0
 docker tag pyspark wiseupdata/pyspark:3.4.0-ubuntu-23.04
 ```
 
 - push your image to dockerhub ♨️
-```shell
+```bash
 docker push wiseupdata/pyspark
 docker push wiseupdata/pyspark:3.4.0
 docker push wiseupdata/pyspark:3.4.0-ubuntu-23.04
@@ -117,7 +188,7 @@ docker push wiseupdata/pyspark:3.4.0-ubuntu-23.04
 
 ### Test the image 🎢
 
-```shell
+```bash
 docker run -it -u ubuntu wiseupdata/pyspark:3.4.0 bash
 ```
 </details>
@@ -133,27 +204,27 @@ click here!▶️
 </summary>
 
 list all container
-```shell
+```bash
 docker ps -a
 ```
 
 kill all containers ☠️
-```shell
+```bash
 docker rm $(docker ps -a -q) -f
 ```
 
 list the images
-```shell
+```bash
 docker image ls -a
 ```
 
 delete one image
-```shell
+```bash
 docker image rm pyspark -f
 ```
 
 Delete all images ☠️
-```shell
+```bash
 docker image rm  $(docker image ls -a ) -f
 ```
 
