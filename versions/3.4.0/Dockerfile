@@ -2,12 +2,20 @@
 # Oficial Python Image based in Ubuntu
 #########################################################
 # Ubuntu 23.04
-FROM ubuntu:lunar 
+FROM wiseupdata/python:3.10
 
 LABEL maintainer="silvio liborio"
 
+
+##############################################################################
+# Environment Variables
+##############################################################################
+USER root
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
+ENV SPARK_VERSION=3.4.0
+ENV HADOOP_VERSION=3
+ENV JAVA_OPEN_JDK="OpenJDK8U-jdk_x64_linux_hotspot_8u372b07"
 
 # Define en_US types for the environmet
 ENV LANGUAGE en_US.UTF-8
@@ -16,68 +24,75 @@ ENV LC_ALL en_US.UTF-8
 ENV LC_CTYPE en_US.UTF-8
 ENV LC_MESSAGES en_US.UTF-8
 
+
+##############################################################################
+# Simple update and clean
+##############################################################################
 # Update package list
 RUN apt-get update && apt-get upgrade -y
 
-##############################################################################
-# Install dependencies 
-##############################################################################
-RUN apt-get install -y \
-    apt-transport-https  \
-    build-essential  \
-    ca-certificates  \
-    curl  \
-    file \
-    gettext \
-    git \
-    libasound2 \
-    libbz2-dev \
-    libcurl4-gnutls-dev \
-    libexpat1-dev \
-    libffi-dev \
-    libfontconfig1 \
-    libgconf-2-4 \
-    libghc-zlib-dev \
-    liblzma-dev \
-    libncursesw5-dev \
-    libnss3 \
-    libreadline-dev \
-    libsqlite3-dev \
-    libssl-dev \
-    libxi6 \
-    libxml2-dev \
-    libxmlsec1-dev \
-    llvm \
-    lsb-release \
-    make \
-    procps \
-    sudo \
-    tk-dev \
-    unzip \
-    wget \
-    xvfb \
-    xz-utils \
-    zip \
-    zlib1g-dev \
-    sudo \
-    software-properties-common
+# Clean up unnecessary files and directories
+RUN rm -rf /tmp/* && \
+    apt autoremove -y && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/*
+
 
 ##############################################################################
-# Preparer the user
+# Install Java 8
 ##############################################################################
-RUN usermod -aG sudo ubuntu
-RUN echo "ubuntu ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/ubuntu
+
+# Download
+RUN cd /opt && \
+    wget https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u372-b07/${JAVA_OPEN_JDK}.tar.gz && \
+    tar -xzf ${JAVA_OPEN_JDK}.tar.gz && \
+    rm ${JAVA_OPEN_JDK}.tar.gz && \
+    mv jdk* java
+
+# Setup
+RUN ln -s /opt/java/bin/java /usr/local/bin/java && \
+    ln -s /opt/java/bin/javac /usr/local/bin/javac && \
+    update-alternatives --install /usr/bin/java java /usr/local/bin/java 1 && \
+    update-alternatives --install /usr/bin/javac javac /usr/local/bin/javac 1
+
+# Java envs
+RUN export JAVA_HOME=/opt/java
+
 
 ##############################################################################
-# Install Python 3.9 # More stable for production
+# Install Spark
 ##############################################################################
-RUN wget https://www.python.org/ftp/python/3.9.12/Python-3.9.12.tgz && \
-    tar -xf Python-3.9.12.tgz && \
-    cd Python-3.9.12 && \
-    ./configure --enable-optimizations && \
-    make -j$(nproc) && \
-    sudo make altinstall
-RUN ln -s /usr/local/bin/python3.9 /usr/local/bin/python && \
-    ln -s /usr/local/bin/pip3.9 /usr/local/bin/pip
+RUN cd /opt && \
+    wget https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
+    tar xvzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
+    mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} spark && \
+    chown -R root:root spark && \
+    rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 
-RUN pip install --upgrade pip
+RUN export SPARK_HOME=/opt/spark
+
+
+##############################################################################
+# Spark variables
+##############################################################################
+# RUN echo "source /etc/profile" >> /etc/bash.bashrc
+# TODO: Not working in Ubuntu 23, could be anything, try to fix it in the future to not be so verbose in the code as the next lines!
+
+# spark envs to all Bourne-compatible shells.
+RUN echo " " >> /etc/profile
+RUN echo "export SPARK_HOME=/opt/spark" >> /etc/profile
+RUN echo "export PYTHONPATH=$SPARK_HOME/python:${SPARK_HOME}/python/lib/pyspark.zip:$SPARK_HOME/python/lib/py4j-0.10.9.7-src.zip" >> /etc/profile
+RUN echo "export PYSPARK_PYTHON=/usr/local/bin/python" >> /etc/profile
+RUN echo "export PYSPARK_DRIVER_PYTHON=/usr/local/bin/python" >> /etc/profile
+RUN echo "export PYLIB=$SPARK_HOME/python/lib" >> /etc/profile
+RUN echo " " >> /etc/profile
+
+RUN echo " " >> /etc/bash.bashrc
+RUN echo "export SPARK_HOME=/opt/spark" >> /etc/bash.bashrc
+RUN echo "export PYTHONPATH=$SPARK_HOME/python:${SPARK_HOME}/python/lib/pyspark.zip:$SPARK_HOME/python/lib/py4j-0.10.9.7-src.zip" >> /etc/bash.bashrc
+RUN echo "export PYSPARK_PYTHON=/usr/local/bin/python" >> /etc/bash.bashrc
+RUN echo "export PYSPARK_DRIVER_PYTHON=/usr/local/bin/python" >> /etc/bash.bashrc
+RUN echo "export PYLIB=$SPARK_HOME/python/lib" >> /etc/bash.bashrc
+RUN echo " " >> /etc/bash.bashrc
+
+CMD ["/bin/bash"]

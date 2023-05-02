@@ -35,7 +35,7 @@ docker run -it -u ubuntu wiseupdata/pyspark bash
 # Summary 📃
 
 - Versions info 🐍
-  - <p align="left"><a href="#version-3.4">3.4</a></p>
+  - <p align="left"><a href="#version-3.4.0">3.4.0</a></p>
 - Utils 🛠️
   - <p align="left"><a href="#ref_util">Utils</a></p>
   - <p align="left"><a href="#ref_build">Create your own image to dockerhub</a></p>
@@ -45,30 +45,31 @@ docker run -it -u ubuntu wiseupdata/pyspark bash
 
 <br>
 
-<a name="version-3.4"></a>
+<a name="version-3.4.0"></a>
 
-## Version 3.4 ✨️
+## Version 3.4.0 ✨️
 
-- Pyspark 3.4 
+- Pyspark 3.4.0 
 - Ubuntu 23.04 Luna - Official
 - Python 3.10 - Official
+- OpenJDK8 - (Official)(https://adoptium.net/download/)
 - User`ubuntu` with sudo, no password
 - Made with A.I. contribution 🤖 
-- [Dockerfile](https://github.com/wiseupdata/pyspark/blob/main/versions/3.4/Dockerfile)
+- [Dockerfile](https://github.com/wiseupdata/pyspark/blob/main/versions/3.4.0/Dockerfile)
 
-  > This setup it's the same for the tags: 3.4 and 3.4-ubuntu-23.04
+  > This setup it's the same for the tags: 3.4.0 and 3.4.0-ubuntu-23.04
 
 <br>
 
 Example with specific version 💻:
 ```shell
-docker run -it -u ubuntu wiseupdata/pyspark:3.4 bash
-docker run -it -u ubuntu wiseupdata/pyspark:3.4-ubuntu-23.04 bash
+docker run -it -u ubuntu wiseupdata/pyspark:3.4.0 bash
+docker run -it -u ubuntu wiseupdata/pyspark:3.4.0-ubuntu-23.04 bash
 ```
 
 ### Info 🔎
-- Pyspark 3.4 it's official from [spark.apache.org](https://spark.apache.org/downloads.html)
-  - To use pyspark 3.4 just type:  `pyspark`
+- Pyspark 3.4.0 it's official from [spark.apache.org](https://spark.apache.org/downloads.html)
+  - To use pyspark 3.4.0 just type:  `pyspark`
 
 
 <a name="ref_build"></a>
@@ -86,7 +87,7 @@ click here!▶️
 - Build the image
 
 ```shell
-docker build -t pyspark ./versions/3.4
+docker build -t pyspark ./versions/3.4.0
 ```
 - Test the image
 ```shell
@@ -103,21 +104,21 @@ docker login -u wiseupdata
 
 ```shell
 docker tag pyspark wiseupdata/pyspark
-docker tag pyspark wiseupdata/pyspark:3.4
-docker tag pyspark wiseupdata/pyspark:3.4-ubuntu-23.04
+docker tag pyspark wiseupdata/pyspark:3.4.0
+docker tag pyspark wiseupdata/pyspark:3.4.0-ubuntu-23.04
 ```
 
 - push your image to dockerhub ♨️
 ```shell
 docker push wiseupdata/pyspark
-docker push wiseupdata/pyspark:3.4
-docker push wiseupdata/pyspark:3.4-ubuntu-23.04
+docker push wiseupdata/pyspark:3.4.0
+docker push wiseupdata/pyspark:3.4.0-ubuntu-23.04
 ```
 
 ### Test the image 🎢
 
 ```shell
-docker run -it -u ubuntu wiseupdata/pyspark:3.4 bash
+docker run -it -u ubuntu wiseupdata/pyspark:3.4.0 bash
 ```
 </details>
 
@@ -172,6 +173,7 @@ docker image rm  $(docker image ls -a ) -f
 1. [GitHub Repository](https://github.com/wiseupdata/pyspark)
 1. [WiseUpData](https://www.wiseupdata.com/)
 1. [Emojis](https://github.com/wiseupdata/emojis)
+1. [OpenJDK](https://adoptium.net/download/)
 
 
 <br>
