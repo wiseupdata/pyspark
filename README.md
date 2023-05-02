@@ -27,7 +27,7 @@ Pyspark docker images! 🚀️
 # Simple to use ❤️
 
 ```bash
-docker run -it -u ubuntu wiseupdata/pyspark bash
+docker run -it -u ubuntu wiseupdata/pyspark
 ```
 
 <br>
@@ -66,8 +66,8 @@ docker run -it -u ubuntu wiseupdata/pyspark bash
 
 Example with specific version 💻:
 ```bash
-docker run -it -u ubuntu wiseupdata/pyspark:3.4.0 bash
-docker run -it -u ubuntu wiseupdata/pyspark:3.4.0-ubuntu-23.04 bash
+docker run -it -u ubuntu wiseupdata/pyspark:3.4.0
+docker run -it -u ubuntu wiseupdata/pyspark:3.4.0-ubuntu-23.04
 ```
 
 ### Inside made easy! 😍
