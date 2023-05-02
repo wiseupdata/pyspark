@@ -64,7 +64,9 @@ docker run -it -u ubuntu wiseupdata/python bash
 
 Example with specific version:
 ```shell
-docker run -it -u ubuntu wiseupdata/python:3.9
+docker run -it -u ubuntu wiseupdata/python:3.9 bash
+docker run -it -u ubuntu wiseupdata/python:3.11 bash
+docker run -it -u ubuntu wiseupdata/python:3.9-ubuntu-23.04 bash
 ```
 
 
