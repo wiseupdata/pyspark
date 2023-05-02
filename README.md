@@ -25,83 +25,92 @@ Python docker images! 🚀️
 
 # Simple to use ❤️
 
-```
+```shell
 docker run -it -u ubuntu wiseupdata/python bash
 ```
 
-## Versions ✨️
+## Version 3.9 ✨️
 
-### Tag 3.9-ubuntu-23.04 python_3_9
-
+- Python 3.9
+- Python 3.11
 - Ubuntu 23.04 official
-- python 3.9`python`
-- python 3.11`python3`
-- user`ubuntu` with sudo, no password
-- validated wit A.I. 🦾
+- User`ubuntu` with sudo, no password
+- Made with A.I. contribution 🤖 
 
+Example:
+```shell
+docker run -it -u ubuntu wiseupdata/python:python_3_9_ubuntu_23_04
 ```
-docker run -it -u ubuntu wiseupdata/python:3.9-ubuntu-23.04 bash
-```
+
+
+### inside the container
+
+- For python 3.9 just type:  `python`
+- For python 3.11 just type:  `python3`
+
+
+<br>
+
+# Tip 🥳
+Create you own image to dockerhub 
 
 ## Simple customization example. 🎢
 
 Update the `Dockerfile` and run the command bellow
 
-```
+```shell
 docker build -t python .
 docker run -it --rm python
 ```
 
-# Create a tag and deploy to dockerhub 🥳
+Log in your account 🤜
 
-log in your account 🤜
-
-```
+```shell
 docker login -u wiseupdata
 ```
 
 Create a tag 🤺
 
-```
-docker tag python wiseupdata/python:3.9-ubuntu-23.04
+```shell
+docker tag python wiseupdata/python_3_9_ubuntu_23_04
 ```
 
 push your image ♨️
 
-```
-docker push wiseupdata/python:3.9-ubuntu-23.04
+```shell
+docker push wiseupdata/python_3_9_ubuntu_23_04
 ```
 
 # Test the image 🎢
 
-```
-docker run -it -u ubuntu wiseupdata/python:3.9-ubuntu-23.04
+```shell
+docker run -it -u ubuntu wiseupdata/python_3_9_ubuntu_23_04 bash
 ```
 
 # Utils 🎁
 
 list all container
-```
+```shell
 docker ps -a
 ```
 
 kill all containers ☠️
-```
+```shell
 docker rm $(docker ps -a -q) -f
 ```
 
 list the images
-```
+```shell
 docker image ls -a
 ```
 
 delete one image
-```
+```shell
 docker image rm python -f
 ```
 
 Delete all images ☠️
-```
+```shell
 docker image rm  $(docker image ls -a ) -f
 ```
 
