@@ -33,6 +33,7 @@ docker run -it -u ubuntu wiseupdata/python bash
 <br>
 
 # Versions 😍🐍
+-[3.9](#version-39-%EF%B8%8F)
 - <p align="left"><a href="#version-3-9">3.9</a></p>
 
 <br>
