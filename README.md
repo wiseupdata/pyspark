@@ -33,11 +33,13 @@ docker run -it -u ubuntu wiseupdata/python bash
 <br>
 
 # Summary 📃
+
 - Versions 🐍
   - <p align="left"><a href="#version-3.9">3.9</a></p>
-- <p align="left"><a href="#ref_util">Utils</a></p>
-- <p align="left"><a href="#ref_references">Create your own image to dockerhub</a></p>
-- <p align="left"><a href="#ref_build">References</a></p>
+- Utils 🛠️
+  - <p align="left"><a href="#ref_util">Utils</a></p>
+  - <p align="left"><a href="#ref_build">Create your own image to dockerhub</a></p>
+  - <p align="left"><a href="#ref_references">References</a></p>
 
 <br>
 
