@@ -92,7 +92,7 @@ click here!▶️
 - Build the image
 
 ```shell
-docker build -t python .
+docker build -t python ./versions/3.9
 ```
 - Test the image
 ```shell
