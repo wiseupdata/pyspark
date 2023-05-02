@@ -1,7 +1,3 @@
-Easy Use and customize the Docker image!
-
----
-
 <a href="https://github.com/wiseupdata/wiseupdata">
   <img align="left" alt="Wise Up Data's Instagram" width="22px" src="https://raw.githubusercontent.com/wiseupdata/wiseupdata/main/assets/instagram.png" />   
 </a> 
