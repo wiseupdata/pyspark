@@ -62,7 +62,7 @@ docker run -it -u ubuntu wiseupdata/python bash
 
 <br>
 
-Example with specific version:
+Example with specific version 💻:
 ```shell
 docker run -it -u ubuntu wiseupdata/python:3.9 bash
 docker run -it -u ubuntu wiseupdata/python:3.11 bash
@@ -72,9 +72,9 @@ docker run -it -u ubuntu wiseupdata/python:3.9-ubuntu-23.04 bash
 
 ### Info 🔎
 - Python 3.9 it's official from `www.python.org`
-  - For use the python 3.9 just type:  `python`
-- Python 3.11 it's native from Ubuntu Luna
-  - For use the python 3.11 just type:  `python3`
+  - To use python 3.9 just type:  `python`
+- Python 3.11 it's native to Ubuntu Luna
+  - To use python 3.11 just type:  `python3`
 
 
 <br>
@@ -101,7 +101,7 @@ docker build -t python ./versions/3.9
 docker run -it --rm python bash
 ```
 
-- Log in your account 🤜
+- Log in to your account 🤜
 
 ```shell
 docker login -u wiseupdata
@@ -190,7 +190,7 @@ docker image rm  $(docker image ls -a ) -f
 
 ## Maintainer 🤗 👨‍💻
 
-Sivio Liborio
+Silvio Liborio
 
 📧 silvio.liborio@wiseupdata.com
 
