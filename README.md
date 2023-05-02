@@ -30,6 +30,15 @@ Python docker images! 🚀️
 docker run -it -u ubuntu wiseupdata/python bash
 ```
 
+<br>
+
+# Versions 😍🐍
+- <p align="left"><a href="#version-3.9">3.9</a></p>
+
+<br>
+
+<a name="#version-3.9"></a>
+
 ## Version 3.9 ✨️
 
 - Python 3.9
@@ -99,7 +108,7 @@ docker push wiseupdata/python:3.11
 docker push wiseupdata/python:3.9-ubuntu-23.04
 ```
 
-# Test the image 🎢
+### Test the image 🎢
 
 ```shell
 docker run -it -u ubuntu wiseupdata/3.9 bash
@@ -157,9 +166,10 @@ docker image rm  $(docker image ls -a ) -f
 
 <br>
 <br>
+
 ---
 
-#### Maintainer 🤗 👨‍💻
+## Maintainer 🤗 👨‍💻
 
 Sivio Liborio
 
