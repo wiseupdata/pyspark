@@ -33,14 +33,14 @@ docker run -it -u ubuntu wiseupdata/python bash
 <br>
 
 # Versions 😍🐍
-- <p align="left"><a href="#ref_version_3_9">3.9</a></p>
+- <p align="left"><a href="#version-3.9">3.9</a></p>
 
 <br>
 
-
-<a name="#ref_version_3_9"> test</a>
+<a name="version-3.9"></a>
 
 ## Version 3.9 ✨️
+
 - Python 3.9
 - Python 3.11 
 - Ubuntu 23.04 Luna - Official
@@ -184,5 +184,3 @@ Sivio Liborio
 <br>
 <br>
 <br>
-
-<p align="left"><a href="#ref_version_3_9">3.9</a></p>
