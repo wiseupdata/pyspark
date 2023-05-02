@@ -32,8 +32,12 @@ docker run -it -u ubuntu wiseupdata/python bash
 
 <br>
 
-# Versions 😍🐍
-- <p align="left"><a href="#version-3.9">3.9</a></p>
+# Summary 📃
+- Versions 🐍
+  - <p align="left"><a href="#version-3.9">3.9</a></p>
+- <p align="left"><a href="#ref_util">Utils</a></p>
+- <p align="left"><a href="#ref_references">Create your own image to dockerhub</a></p>
+- <p align="left"><a href="#ref_build">References</a></p>
 
 <br>
 
@@ -65,6 +69,8 @@ docker run -it -u ubuntu wiseupdata/python:3.9
 
 
 <br>
+
+<a name="ref_build"></a>
 
 # Create your own image to dockerhub 🥳
 <details>
@@ -117,6 +123,8 @@ docker run -it -u ubuntu wiseupdata/3.9 bash
 
 <br>
 
+<a name="ref_util"></a>
+
 # Utils 🎁 
 <details>
 <summary>
@@ -156,6 +164,8 @@ docker image rm  $(docker image ls -a ) -f
 ---
 <br>
 <br>
+
+<a name="ref_references"></a>
 
 # References 🌍 🗄️
 
