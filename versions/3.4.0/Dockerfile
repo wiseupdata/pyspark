@@ -11,6 +11,7 @@ LABEL maintainer="silvio liborio"
 # Environment Variables
 ##############################################################################
 USER root
+
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 ENV SPARK_VERSION=3.4.0
@@ -37,6 +38,17 @@ RUN rm -rf /tmp/* && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
 
+
+##############################################################################
+# Creating the user spark
+##############################################################################
+
+# Create a new user called "spark" with sudo privileges
+RUN useradd -m -s /bin/bash spark && \
+    echo "spark ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+    
+# configuring the groups
+RUN usermod -aG spark ubuntu  && usermod -aG ubuntu spark
 
 ##############################################################################
 # Install Java 8
@@ -107,6 +119,10 @@ RUN echo " " >> /etc/bash.bashrc
 # Copy yours extra Jars
 ##############################################################################
 COPY jars/* /opt/spark/jars/
+COPY scripts/entrypoint.sh /opt/
 
-CMD ["/bin/bash"]
+RUN chown spark:spark /opt/entrypoint.sh
 
+USER spark
+
+ENTRYPOINT [ "/opt/entrypoint.sh" ]

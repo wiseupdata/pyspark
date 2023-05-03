@@ -247,6 +247,7 @@ docker image rm  $(docker image ls -a ) -f
 1. [WiseUpData](https://www.wiseupdata.com/)
 1. [Emojis](https://github.com/wiseupdata/emojis)
 1. [OpenJDK](https://adoptium.net/download/)
+1. [Apache Dockerfile](https://github.com/apache/spark/blob/master/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/Dockerfile)
 
 
 <br>
