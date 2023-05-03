@@ -158,7 +158,7 @@ click here!▶️
 - Build the image
 
 ```bash
-docker build -t pyspark ./versions/3.4.0
+docker build -t pyspark ./versions/3.4.0 --no-cache
 ```
 - Test the image
 ```bash
@@ -228,6 +228,11 @@ docker image rm pyspark -f
 Delete all images ☠️
 ```bash
 docker image rm  $(docker image ls -a ) -f
+```
+
+Force run ☠️
+```bash
+docker run -it --entrypoint /bin/bash pyspark
 ```
 
 </details>

@@ -10,7 +10,6 @@ LABEL maintainer="silvio liborio"
 ##############################################################################
 # Environment Variables
 ##############################################################################
-USER root
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
@@ -42,7 +41,6 @@ RUN rm -rf /tmp/* && \
 ##############################################################################
 # Creating the user spark
 ##############################################################################
-
 # Create a new user called "spark" with sudo privileges
 RUN useradd -m -s /bin/bash spark && \
     echo "spark ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -50,10 +48,10 @@ RUN useradd -m -s /bin/bash spark && \
 # configuring the groups
 RUN usermod -aG spark ubuntu  && usermod -aG ubuntu spark
 
+
 ##############################################################################
 # Install Java 8
 ##############################################################################
-
 # Download
 RUN cd /opt && \
     wget https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u372-b07/${JAVA_OPEN_JDK}.tar.gz && \
@@ -66,9 +64,6 @@ RUN ln -s /opt/java/bin/java /usr/local/bin/java && \
     ln -s /opt/java/bin/javac /usr/local/bin/javac && \
     update-alternatives --install /usr/bin/java java /usr/local/bin/java 1 && \
     update-alternatives --install /usr/bin/javac javac /usr/local/bin/javac 1
-
-# Java envs
-RUN export JAVA_HOME=/opt/java
 
 
 ##############################################################################
@@ -98,31 +93,38 @@ RUN ln -s $SPARK_HOME/bin/spark-shell /usr/local/bin/spark && \
 # RUN echo "source /etc/profile" >> /etc/bash.bashrc
 # TODO: Not working in Ubuntu 23, could be anything, try to fix it in the future to not be so verbose in the code as the next lines!
 
-# spark envs to all Bourne-compatible shells.
-RUN echo " " >> /etc/profile
-RUN echo "export SPARK_HOME=/opt/spark" >> /etc/profile
-RUN echo "export PYTHONPATH=$SPARK_HOME/python:${SPARK_HOME}/python/lib/pyspark.zip:$SPARK_HOME/python/lib/py4j-0.10.9.7-src.zip" >> /etc/profile
-RUN echo "export PYSPARK_PYTHON=/usr/local/bin/python" >> /etc/profile
-RUN echo "export PYSPARK_DRIVER_PYTHON=/usr/local/bin/python" >> /etc/profile
-RUN echo "export PYLIB=$SPARK_HOME/python/lib" >> /etc/profile
-RUN echo " " >> /etc/profile
+# Spark envs to all Bourne-compatible shells.
+RUN echo " " >> /etc/profile && \
+    echo "export SPARK_HOME=/opt/spark" >> /etc/profile && \
+    echo "export PYTHONPATH=$SPARK_HOME/python:${SPARK_HOME}/python/lib/pyspark.zip:$SPARK_HOME/python/lib/py4j-0.10.9.7-src.zip" >> /etc/profile && \
+    echo "export PYSPARK_PYTHON=/usr/local/bin/python" >> /etc/profile && \
+    echo "export PYSPARK_DRIVER_PYTHON=/usr/local/bin/python" >> /etc/profile && \
+    echo "export PYLIB=$SPARK_HOME/python/lib" >> /etc/profile && \
+    echo " " >> /etc/profile
 
-RUN echo " " >> /etc/bash.bashrc
-RUN echo "export SPARK_HOME=/opt/spark" >> /etc/bash.bashrc
-RUN echo "export PYTHONPATH=$SPARK_HOME/python:${SPARK_HOME}/python/lib/pyspark.zip:$SPARK_HOME/python/lib/py4j-0.10.9.7-src.zip" >> /etc/bash.bashrc
-RUN echo "export PYSPARK_PYTHON=/usr/local/bin/python" >> /etc/bash.bashrc
-RUN echo "export PYSPARK_DRIVER_PYTHON=/usr/local/bin/python" >> /etc/bash.bashrc
-RUN echo "export PYLIB=$SPARK_HOME/python/lib" >> /etc/bash.bashrc
-RUN echo " " >> /etc/bash.bashrc
+# Spark envs to all bashrc shells.
+RUN echo " " >> /etc/bash.bashrc && \
+    echo "export SPARK_HOME=/opt/spark" >> /etc/bash.bashrc && \
+    echo "export PYTHONPATH=$SPARK_HOME/python:${SPARK_HOME}/python/lib/pyspark.zip:$SPARK_HOME/python/lib/py4j-0.10.9.7-src.zip" >> /etc/bash.bashrc  && \
+    echo "export PYSPARK_PYTHON=/usr/local/bin/python" >> /etc/bash.bashrc && \
+    echo "export PYSPARK_DRIVER_PYTHON=/usr/local/bin/python" >> /etc/bash.bashrc && \
+    echo "export PYLIB=$SPARK_HOME/python/lib" >> /etc/bash.bashrc && \
+    echo " " >> /etc/bash.bashrc
+
 
 ##############################################################################
-# Copy yours extra Jars
+# Adding TINI
+##############################################################################
+ENV TINI_VERSION v0.19.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /sbin/tini
+RUN chmod +x /sbin/tini
+
+
+##############################################################################
+# Final steps
 ##############################################################################
 COPY jars/* /opt/spark/jars/
 COPY scripts/entrypoint.sh /opt/
-
-RUN chown spark:spark /opt/entrypoint.sh
-
-USER spark
+RUN  chmod a+x /opt/entrypoint.sh
 
 ENTRYPOINT [ "/opt/entrypoint.sh" ]
