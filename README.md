@@ -27,7 +27,7 @@ Pyspark docker images! 🚀️
 # Simple to use ❤️
 
 ```bash
-docker run -it -u ubuntu wiseupdata/pyspark
+docker run -it -u spark wiseupdata/pyspark bash
 ```
 
 <br>
@@ -56,8 +56,9 @@ docker run -it -u ubuntu wiseupdata/pyspark
 - Kubernetes Ready and Tested!
 - User`ubuntu` with sudo, no password
 - Simple shell, type:
-  - `python` or `pyspark` and have fun with Python and Spark! ❤️
+  - `pyspark` and have fun with Python and Spark! ❤️
   - `spark` and have fun with Scala and Spark! 🫀
+  - `python` import  the pyspark and have fun!
 - Made with A.I. contribution 🤖 
 - [Dockerfile](https://github.com/wiseupdata/pyspark/blob/main/versions/3.4.0/Dockerfile)
 
@@ -70,8 +71,8 @@ docker run -it -u ubuntu wiseupdata/pyspark
 
 Example with specific version 💻:
 ```bash
-docker run -it -u ubuntu wiseupdata/pyspark:3.4.0
-docker run -it -u ubuntu wiseupdata/pyspark:3.4.0-ubuntu-23.04
+docker run -it -u spark wiseupdata/pyspark:3.4.0 bash
+docker run -it -u spark wiseupdata/pyspark:3.4.0-ubuntu-23.04 bash
 ```
 
 ### Inside made easy! 😍
