@@ -31,6 +31,11 @@ ENV LC_MESSAGES en_US.UTF-8
 # Update package list
 RUN apt-get update && apt-get upgrade -y
 
+# install basics apps to debug
+RUN apt install -y \
+    jq \
+    iputils-ping
+   
 # Clean up unnecessary files and directories
 RUN rm -rf /tmp/* && \
     apt autoremove -y && \
@@ -113,6 +118,22 @@ RUN echo " " >> /etc/bash.bashrc && \
 
 
 ##############################################################################
+# Install Kubectl - Official steps
+##############################################################################
+RUN curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+RUN echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+RUN sudo apt-get update -y
+RUN apt-get install -y kubectl
+
+
+##############################################################################
+# Comand to debug from kubernetes
+##############################################################################
+RUN  echo "while true; do echo running; sleep 10; done" > /exec
+RUN  chmod a+x /exec
+
+
+##############################################################################
 # Adding TINI
 ##############################################################################
 ENV TINI_VERSION v0.19.0
@@ -127,4 +148,4 @@ COPY jars/* /opt/spark/jars/
 COPY scripts/entrypoint.sh /opt/
 RUN  chmod a+x /opt/entrypoint.sh
 
-ENTRYPOINT [ "/opt/entrypoint.sh" ]
+CMD [ "/opt/entrypoint.sh" ]

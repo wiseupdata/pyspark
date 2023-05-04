@@ -53,6 +53,7 @@ docker run -it -u ubuntu wiseupdata/pyspark
 - Ubuntu 23.04 Luna - Official
 - Python 3.10 - Official
 - OpenJDK8 - [Official](https://adoptium.net/download/)
+- Kubernetes Ready and Tested!
 - User`ubuntu` with sudo, no password
 - Simple shell, type:
   - `python` or `pyspark` and have fun with Python and Spark! ❤️
@@ -61,6 +62,9 @@ docker run -it -u ubuntu wiseupdata/pyspark
 - [Dockerfile](https://github.com/wiseupdata/pyspark/blob/main/versions/3.4.0/Dockerfile)
 
   > This setup it's the same for the tags: 3.4.0 and 3.4.0-ubuntu-23.04
+
+
+🚀 This docker was built on top of Apache, to be resilient and ready for debug, so it's light enough! If you need something different try the pure Apache docker!
 
 <br>
 
@@ -165,6 +169,16 @@ docker build -t pyspark ./versions/3.4.0 --no-cache
 docker run -it --rm pyspark bash
 ```
 
+- Debug mode - Useful for Kubernetes
+```
+docker run --name pyspark -d --rm pyspark bash /exec
+docker exec -it pyspark bash
+
+# Exit and kill
+exit
+docker rm pyspark -f
+```
+
 - Log in to your account 🤜
 
 ```bash
@@ -253,6 +267,7 @@ docker run -it --entrypoint /bin/bash pyspark
 1. [Emojis](https://github.com/wiseupdata/emojis)
 1. [OpenJDK](https://adoptium.net/download/)
 1. [Apache Dockerfile](https://github.com/apache/spark/blob/master/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/Dockerfile)
+1. [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
 
 
 <br>
