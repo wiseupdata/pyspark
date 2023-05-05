@@ -170,9 +170,9 @@ docker build -t pyspark ./versions/3.4.0 --no-cache
 docker run -it --rm pyspark
 ```
 
-- Debug mode - Useful for Kubernetes
+- Force the running for debug mode - Useful for Kubernetes
 ```
-docker run --name pyspark -d --rm pyspark bash /exec
+docker run --name pyspark -d --rm pyspark bash run
 docker exec -it pyspark bash
 
 # Exit and kill
