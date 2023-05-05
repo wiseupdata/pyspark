@@ -27,7 +27,7 @@ Pyspark docker images! 🚀️
 # Simple to use ❤️
 
 ```bash
-docker run -it -u spark wiseupdata/pyspark bash
+docker run -it wiseupdata/pyspark
 ```
 
 <br>
