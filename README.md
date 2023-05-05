@@ -62,7 +62,7 @@ docker run -it -u spark wiseupdata/pyspark bash
 - Made with A.I. contribution 🤖 
 - [Dockerfile](https://github.com/wiseupdata/pyspark/blob/main/versions/3.4.0/Dockerfile)
 
-  > This setup it's the same for the tags: 3.4.0 and 3.4.0-ubuntu-23.04
+  > This setup it's the same for the tags: 3.4.0 and 3.4.0-ubuntu-22.04
 
 
 🚀 This docker was built on top of Apache, to be resilient and ready for debug, so it's light enough! If you need something different try the pure Apache docker!
@@ -72,7 +72,7 @@ docker run -it -u spark wiseupdata/pyspark bash
 Example with specific version 💻:
 ```bash
 docker run -it wiseupdata/pyspark:3.4.0
-docker run -it wiseupdata/pyspark:3.4.0-ubuntu-23.04
+docker run -it wiseupdata/pyspark:3.4.0-ubuntu-22.04
 ```
 
 ### Inside made easy! 😍
@@ -171,7 +171,7 @@ docker run -it --rm pyspark
 ```
 
 - Force the running for debug mode - Useful for Kubernetes
-```
+```bash
 docker run --name pyspark -d --rm pyspark bash run
 docker exec -it pyspark bash
 
@@ -191,16 +191,16 @@ docker login -u wiseupdata
 ```bash
 docker tag pyspark wiseupdata/pyspark
 docker tag pyspark wiseupdata/pyspark:3.4.0
-docker tag pyspark wiseupdata/pyspark:3.4.0-ubuntu-23.04
-docker tag pyspark wiseupdata/pyspark:3.4.0-ubuntu-23.04-jdk8
+docker tag pyspark wiseupdata/pyspark:3.4.0-ubuntu-22.04
+docker tag pyspark wiseupdata/pyspark:3.4.0-ubuntu-22.04-jdk8
 ```
 
 - push your image to dockerhub ♨️
 ```bash
 docker push wiseupdata/pyspark
 docker push wiseupdata/pyspark:3.4.0
-docker push wiseupdata/pyspark:3.4.0-ubuntu-23.04
-docker push wiseupdata/pyspark:3.4.0-ubuntu-23.04-jdk8
+docker push wiseupdata/pyspark:3.4.0-ubuntu-22.04
+docker push wiseupdata/pyspark:3.4.0-ubuntu-22.04-jdk8
 ```
 
 ### Test the image 🎢
