@@ -107,7 +107,7 @@ case "$SPARK_K8S_CMD" in
   
    run)
     CMD=(
-      /bin/bash -c 'while true; do echo running; sleep 10; done'
+      /bin/bash -c 'clear;while true; do echo running; sleep 10; done'
     )
     ;;
 
