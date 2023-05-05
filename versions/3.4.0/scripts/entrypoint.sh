@@ -22,7 +22,7 @@ fi
 
 SPARK_K8S_CMD="$1"
 case "$SPARK_K8S_CMD" in
-    driver | driver-py | driver-r | executor)
+    driver | driver-py | driver-r | executor | run)
       shift 1
       ;;
     "")
@@ -104,10 +104,16 @@ case "$SPARK_K8S_CMD" in
       --podName $SPARK_EXECUTOR_POD_NAME
     )
     ;;
+  
+   run)
+    CMD=(
+      /bin/bash -c 'while true; do echo running; sleep 10; done'
+    )
+    ;;
 
   *)
-    echo "Unknown command: $SPARK_K8S_CMD" 1>&2
-    exit 1
+    echo "Non-spark-on-k8s command provided, proceeding in pass-through mode..."
+    exec /bin/bash
 esac
 
 # Execute the container CMD under tini for better hygiene

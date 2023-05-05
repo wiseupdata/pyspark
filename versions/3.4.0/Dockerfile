@@ -22,25 +22,13 @@ ENV LANGUAGE en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_CTYPE en_US.UTF-8
 ENV LC_MESSAGES en_US.UTF-8
-
-ARG spark_uid=185
+USER root
 
 ##############################################################################
 # Simple update and clean
 ##############################################################################
 # Update package list
 RUN apt-get update && apt-get upgrade -y
-
-# install basics apps to debug
-RUN apt install -y \
-    jq \
-    iputils-ping
-   
-# Clean up unnecessary files and directories
-RUN rm -rf /tmp/* && \
-    apt autoremove -y && \
-    apt clean && \
-    rm -rf /var/lib/apt/lists/*
 
 
 ##############################################################################
@@ -127,13 +115,6 @@ RUN apt-get install -y kubectl
 
 
 ##############################################################################
-# Comand to debug from kubernetes
-##############################################################################
-RUN  echo "while true; do echo running; sleep 10; done" > /exec
-RUN  chmod a+x /exec
-
-
-##############################################################################
 # Adding TINI
 ##############################################################################
 ENV TINI_VERSION v0.19.0
@@ -146,8 +127,10 @@ RUN chmod +x /sbin/tini
 ##############################################################################
 COPY jars/* /opt/spark/jars/
 COPY scripts/entrypoint.sh /opt/
+RUN  chmod a+x /opt/entrypoint.sh
 
 ENTRYPOINT [ "/opt/entrypoint.sh" ]
 
 # Specify the User that the actual main process will run as
-USER ${spark_uid}
+WORKDIR /home/spark
+USER spark

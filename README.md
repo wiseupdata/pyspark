@@ -50,7 +50,7 @@ docker run -it -u spark wiseupdata/pyspark bash
 ## Version 3.4.0 ✨️
 
 - Pyspark 3.4.0 
-- Ubuntu 23.04 Luna - Official
+- Ubuntu 22.04.2 LTS end of life April 2032 - Official
 - Python 3.10 - Official
 - OpenJDK8 - [Official](https://adoptium.net/download/)
 - Kubernetes Ready and Tested!
@@ -71,8 +71,8 @@ docker run -it -u spark wiseupdata/pyspark bash
 
 Example with specific version 💻:
 ```bash
-docker run -it -u spark wiseupdata/pyspark:3.4.0 bash
-docker run -it -u spark wiseupdata/pyspark:3.4.0-ubuntu-23.04 bash
+docker run -it wiseupdata/pyspark:3.4.0
+docker run -it wiseupdata/pyspark:3.4.0-ubuntu-23.04
 ```
 
 ### Inside made easy! 😍
@@ -167,7 +167,7 @@ docker build -t pyspark ./versions/3.4.0 --no-cache
 ```
 - Test the image
 ```bash
-docker run -it --rm pyspark bash
+docker run -it --rm pyspark
 ```
 
 - Debug mode - Useful for Kubernetes
@@ -206,7 +206,7 @@ docker push wiseupdata/pyspark:3.4.0-ubuntu-23.04-jdk8
 ### Test the image 🎢
 
 ```bash
-docker run -it -u ubuntu wiseupdata/pyspark:3.4.0 bash
+docker run -it wiseupdata/pyspark:3.4.0
 ```
 </details>
 
