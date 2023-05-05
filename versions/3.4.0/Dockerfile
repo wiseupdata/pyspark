@@ -20,10 +20,10 @@ ENV JAVA_OPEN_JDK="OpenJDK8U-jdk_x64_linux_hotspot_8u372b07"
 # Define en_US types for the environmet
 ENV LANGUAGE en_US.UTF-8
 ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
 ENV LC_CTYPE en_US.UTF-8
 ENV LC_MESSAGES en_US.UTF-8
 
+ARG spark_uid=185
 
 ##############################################################################
 # Simple update and clean
@@ -146,6 +146,8 @@ RUN chmod +x /sbin/tini
 ##############################################################################
 COPY jars/* /opt/spark/jars/
 COPY scripts/entrypoint.sh /opt/
-RUN  chmod a+x /opt/entrypoint.sh
 
-CMD [ "/opt/entrypoint.sh" ]
+ENTRYPOINT [ "/opt/entrypoint.sh" ]
+
+# Specify the User that the actual main process will run as
+USER ${spark_uid}
