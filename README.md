@@ -11,23 +11,23 @@
   <img align="left" alt="wise Up Data's LinkedIN" width="22px" src="https://raw.githubusercontent.com/wiseupdata/wiseupdata/main/assets/linkedin.png" />
 </a>
 
-![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fwiseupdata%2Fpython&countColor=%2337d67a&style=flat)
-![license](https://img.shields.io/github/license/wiseupdata/python)
+![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fwiseupdata%2Fpyspark&countColor=%2337d67a&style=flat)
+![license](https://img.shields.io/github/license/wiseupdata/pyspark)
 
 ---
 <a name="readme-top"></a>
 
 <h1>
-<img align="left" alt="Docker image" src="https://raw.githubusercontent.com/wiseupdata/python/main/assets/imgs/docker.png" width="100" />
+<img align="left" alt="Docker image" src="https://raw.githubusercontent.com/wiseupdata/pyspark/main/assets/imgs/docker.png" width="100" />
 
-Python docker images! 🚀️
+Pyspark docker images! 🚀️
 
 </h1>
 
 # Simple to use ❤️
 
-```shell
-docker run -it -u ubuntu wiseupdata/python bash
+```bash
+docker run -it wiseupdata/pyspark
 ```
 
 <br>
@@ -35,99 +35,118 @@ docker run -it -u ubuntu wiseupdata/python bash
 # Summary 📃
 
 - Versions info 🐍
-  - <p align="left"><a href="#version-3.11">3.11</a></p>
-  - <p align="left"><a href="#version-3.10">3.10</a></p>
-  - <p align="left"><a href="#version-3.9">3.9</a></p>
-
- 
+  - <p align="left"><a href="#version-3.4.0">3.4.0</a></p>
 - Utils 🛠️
   - <p align="left"><a href="#ref_util">Utils</a></p>
   - <p align="left"><a href="#ref_build">Create your own image to dockerhub</a></p>
   - <p align="left"><a href="#ref_references">References</a></p>
-  - [Dockerhub versions](https://hub.docker.com/r/wiseupdata/python/tags)
+  - [Dockerhub versions](https://hub.docker.com/r/wiseupdata/pyspark/tags)
 
 
 <br>
 
-<a name="version-3.11"></a>
+<a name="version-3.4.0"></a>
 
-## Version 3.11 ✨️
+## Version 3.4.0 ✨️
 
-- Python 3.11 
-- Ubuntu 23.04 Luna - Official
+- Pyspark 3.4.0 
+- Ubuntu 22.04.2 LTS end of life April 2032 - Official
+- Python 3.10 - Official
+- OpenJDK8 - [Official](https://adoptium.net/download/)
+- Kubernetes Ready and Tested!
 - User`ubuntu` with sudo, no password
+- Simple shell, type:
+  - `pyspark` and have fun with Python and Spark! ❤️
+  - `spark` and have fun with Scala and Spark! 🫀
+  - `python` import  the pyspark and have fun!
 - Made with A.I. contribution 🤖 
-- [Dockerfile](https://github.com/wiseupdata/python/blob/main/versions/3.11/Dockerfile)
+- [Dockerfile](https://github.com/wiseupdata/pyspark/blob/main/versions/3.4.0/Dockerfile)
 
-  > This setup it's the same for the tags: 3.11 and 3.11-ubuntu-23.04
+  > This setup it's the same for the tags: 3.4.0 and 3.4.0-ubuntu-22.04
+
+
+🚀 This docker was built on top of Apache, to be resilient and ready for debug, so it's light enough! If you need something different try the pure Apache docker!
 
 <br>
 
 Example with specific version 💻:
-```shell
-docker run -it -u ubuntu wiseupdata/python:3.11 bash
-docker run -it -u ubuntu wiseupdata/python:3.11-ubuntu-23.04 bash
+```bash
+docker run -it wiseupdata/pyspark:3.4.0
+docker run -it wiseupdata/pyspark:3.4.0-ubuntu-22.04
 ```
 
-### Info 🔎
-- Python 3.11 it's official from `www.python.org`
-  - To use python 3.11 just type:  `python`
+### Inside made easy! 😍
+#### Type pyspark and enjoy Python with Spark!
 
-
-<br>
-
-<a name="version-3.10"></a>
-
-## Version 3.10 ✨️
-
-- Python 3.10
-- Ubuntu 23.04 Luna - Official
-- User`ubuntu` with sudo, no password
-- Made with A.I. contribution 🤖 
-- [Dockerfile](https://github.com/wiseupdata/python/blob/main/versions/3.10/Dockerfile)
-
-  > This setup it's the same for the tags: 3.10 and 3.10-ubuntu-23.04
-
-<br>
-
-Example with specific version 💻:
-```shell
-docker run -it -u ubuntu wiseupdata/python:3.10 bash
-docker run -it -u ubuntu wiseupdata/python:3.10-ubuntu-23.04 bash
+```bash
+pyspark
 ```
 
-### Info 🔎
-- Python 3.10 it's official from `www.python.org`
-  - To use python 3.10 just type:  `python`
+```bash
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 3.4.0
+      /_/
 
-<br>
-
-<a name="version-3.9"></a>
-
-## Version 3.9 ✨️
-
-- Python 3.9
-- Ubuntu 23.04 Luna - Official
-- User`ubuntu` with sudo, no password
-- Made with A.I. contribution 🤖 
-- [Dockerfile](https://github.com/wiseupdata/python/blob/main/versions/3.9/Dockerfile)
-
-  > This setup it's the same for the tags: 3.9 and 3.9-ubuntu-23.04
-
-<br>
-
-Example with specific version 💻:
-```shell
-docker run -it -u ubuntu wiseupdata/python:3.9 bash
-docker run -it -u ubuntu wiseupdata/python:3.9-ubuntu-23.04 bash
+Using Python version 3.10.11 (main, May  2 2023 14:04:10)
 ```
 
+#### Type spark and enjoy it Scala with Spark!
+```bash
+pyspark
+```
+
+```bash
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 3.4.0
+      /_/
+         
+Using Scala version 2.12.17 (OpenJDK 64-Bit Server VM, Java 1.8.0_372)
+```
+
+
 ### Info 🔎
-- Python 3.9 it's official from `www.python.org`
-  - To use python 3.9 just type:  `python`
+- Pyspark 3.4.0 it's official from [spark.apache.org](https://spark.apache.org/downloads.html)
+  - To use pyspark 3.4.0 just type:  `pyspark`
 
+### Tests 🧪
 
-<br>
+#### Pyspark
+
+Type  `python` or `pyspark` and test!
+
+```python
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("TestPySpark").getOrCreate()
+data = [("Alice", 1), ("Bob", 2), ("Charlie", 3)]
+df = spark.createDataFrame(data, ["Name", "Age"])
+df.show()
+
+spark.stop()
+exit()
+```
+
+#### Scala
+
+Type  `spark` and test!
+
+```scala
+import org.apache.spark.sql.SparkSession
+
+val spark = SparkSession.builder.appName("Spark Scala Test").getOrCreate()
+val df = Seq((1, "John"), (2, "Jane"), (3, "Jim")).toDF("id", "name")
+df.show()
+
+spark.stop()
+:quit
+```
+
 
 <a name="ref_build"></a>
 
@@ -143,39 +162,51 @@ click here!▶️
 - Update the `Dockerfile` and run the command bellow
 - Build the image
 
-```shell
-docker build -t python ./versions/3.11
+```bash
+docker build -t pyspark ./versions/3.4.0 --no-cache
 ```
 - Test the image
-```shell
-docker run -it --rm python bash
+```bash
+docker run -it --rm pyspark
+```
+
+- Force the running for debug mode - Useful for Kubernetes
+```bash
+docker run --name pyspark -d --rm pyspark bash run
+docker exec -it pyspark bash
+
+# Exit and kill
+exit
+docker rm pyspark -f
 ```
 
 - Log in to your account 🤜
 
-```shell
+```bash
 docker login -u wiseupdata
 ```
 
 - Create a tag 🤺
 
-```shell
-docker tag python wiseupdata/python
-docker tag python wiseupdata/python:3.11
-docker tag python wiseupdata/python:3.11-ubuntu-23.04
+```bash
+docker tag pyspark wiseupdata/pyspark
+docker tag pyspark wiseupdata/pyspark:3.4.0
+docker tag pyspark wiseupdata/pyspark:3.4.0-ubuntu-22.04
+docker tag pyspark wiseupdata/pyspark:3.4.0-ubuntu-22.04-jdk8
 ```
 
 - push your image to dockerhub ♨️
-```shell
-docker push wiseupdata/python
-docker push wiseupdata/python:3.11
-docker push wiseupdata/python:3.11-ubuntu-23.04
+```bash
+docker push wiseupdata/pyspark
+docker push wiseupdata/pyspark:3.4.0
+docker push wiseupdata/pyspark:3.4.0-ubuntu-22.04
+docker push wiseupdata/pyspark:3.4.0-ubuntu-22.04-jdk8
 ```
 
 ### Test the image 🎢
 
-```shell
-docker run -it -u ubuntu wiseupdata/python:3.11 bash
+```bash
+docker run -it wiseupdata/pyspark:3.4.0
 ```
 </details>
 
@@ -190,28 +221,33 @@ click here!▶️
 </summary>
 
 list all container
-```shell
+```bash
 docker ps -a
 ```
 
 kill all containers ☠️
-```shell
+```bash
 docker rm $(docker ps -a -q) -f
 ```
 
 list the images
-```shell
+```bash
 docker image ls -a
 ```
 
 delete one image
-```shell
-docker image rm python -f
+```bash
+docker image rm pyspark -f
 ```
 
 Delete all images ☠️
-```shell
+```bash
 docker image rm  $(docker image ls -a ) -f
+```
+
+Force run ☠️
+```bash
+docker run -it --entrypoint /bin/bash pyspark
 ```
 
 </details>
@@ -227,9 +263,12 @@ docker image rm  $(docker image ls -a ) -f
 
 # References 🌍 🗄️
 
-1. [GitHub Repository](https://github.com/wiseupdata/python)
+1. [GitHub Repository](https://github.com/wiseupdata/pyspark)
 1. [WiseUpData](https://www.wiseupdata.com/)
 1. [Emojis](https://github.com/wiseupdata/emojis)
+1. [OpenJDK](https://adoptium.net/download/)
+1. [Apache Dockerfile](https://github.com/apache/spark/blob/master/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/Dockerfile)
+1. [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
 
 
 <br>

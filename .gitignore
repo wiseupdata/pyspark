@@ -1,2 +1,6 @@
 oneclik-deploy.sh
 .dev
+assets/scripts/scripts.sh
+assets/scripts/local.sh
+
+versions/*/jars
