@@ -12,12 +12,12 @@ make: clean-docker
 clean: clean-containers clean-images
 
 clean-containers:
-	-docker rm $(docker ps -a -q) -f 2>/dev/null
+	docker rm $(docker ps -a -q) -f 2>/dev/null
 	echo "Docker containers cleaned"
 	docker ps -a
 
 clean-images:
-	-docker image rm $(docker image ls -a ) -f 2>/dev/null
+	docker image rm $(docker image ls -a ) -f 2>/dev/null
 	echo "Docker images cleaned"
 	docker images -a
 

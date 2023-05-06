@@ -163,6 +163,12 @@ RUN echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https
 RUN sudo apt-get update -y
 RUN apt-get install -y kubectl
 
+##############################################################################
+RUN echo "Installing support to R - Official steps"
+##############################################################################
+RUN set -ex && \
+    apt install -y r-base r-base-dev
+
 
 ##############################################################################
 # Final steps
@@ -170,6 +176,12 @@ RUN apt-get install -y kubectl
 COPY jars/* /opt/spark/jars/
 COPY scripts/entrypoint.sh /opt/
 RUN  chmod a+x /opt/entrypoint.sh
+
+RUN rm -rf /tmp/* && \
+    apt autoremove -y && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /var/cache/apt/*
 
 # Specify the User that the actual main process will run as
 WORKDIR /opt/spark/work-dir
