@@ -54,7 +54,8 @@ docker run -it wiseupdata/pyspark
 - Python 3.10 - Official
 - OpenJDK8 - [Official](https://adoptium.net/download/)
 - Kubernetes Ready and Tested!
-- User`ubuntu` with sudo, no password
+- User`spark` Restrict user NO sudo
+- User`Ubuntu` sudo
 - Simple shell, type:
   - `pyspark` and have fun with Python and Spark! ❤️
   - `spark` and have fun with Scala and Spark! 🫀
