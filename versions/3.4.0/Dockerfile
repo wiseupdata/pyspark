@@ -16,6 +16,7 @@ USER root
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 ENV JAVA_OPEN_JDK="OpenJDK8U-jdk_x64_linux_hotspot_8u372b07"
+ENV JAVA_HOME=/opt/java
 
 # Spark env
 ENV SPARK_HOME=/opt/spark \
@@ -54,6 +55,7 @@ RUN ln -s /opt/java/bin/java /usr/local/bin/java && \
     update-alternatives --install /usr/bin/javac javac /usr/local/bin/javac 1
 
 RUN echo "Java installed $(java -version)"
+
 
 
 ##############################################################################
