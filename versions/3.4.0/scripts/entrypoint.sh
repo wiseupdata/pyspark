@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -15,9 +15,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-# echo commands to the terminal output
-set -ex
 
 # Check whether there is a passwd entry for the container UID
 myuid=$(id -u)
@@ -36,30 +33,13 @@ if [ -z "$uidentry" ] ; then
     fi
 fi
 
-SPARK_K8S_CMD="$1"
-case "$SPARK_K8S_CMD" in
-    driver | driver-py | driver-r | executor | run)
-      shift 1
-      ;;
-    "")
-      ;;
-    *)
-      echo "Non-spark-on-k8s command provided, proceeding in pass-through mode..."
-      exec /usr/bin/tini -s -- "$@"
-      ;;
-esac
-
 if [ -z "$JAVA_HOME" ]; then
   JAVA_HOME=$(java -XshowSettings:properties -version 2>&1 > /dev/null | grep 'java.home' | awk '{print $3}')
 fi
 
 SPARK_CLASSPATH="$SPARK_CLASSPATH:${SPARK_HOME}/jars/*"
-env | grep SPARK_JAVA_OPT_ | sort -t_ -k4 -n | sed 's/[^=]*=\(.*\)/\1/g' > java_opts.txt
-if [ "$(command -v readarray)" ]; then
-  readarray -t SPARK_EXECUTOR_JAVA_OPTS < java_opts.txt
-else
-  SPARK_EXECUTOR_JAVA_OPTS=("${(@f)$(< java_opts.txt)}")
-fi
+env | grep SPARK_JAVA_OPT_ | sort -t_ -k4 -n | sed 's/[^=]*=\(.*\)/\1/g' > /tmp/java_opts.txt
+readarray -t SPARK_EXECUTOR_JAVA_OPTS < /tmp/java_opts.txt
 
 if [ -n "$SPARK_EXTRA_CLASSPATH" ]; then
   SPARK_CLASSPATH="$SPARK_CLASSPATH:$SPARK_EXTRA_CLASSPATH"
@@ -88,22 +68,7 @@ elif ! [ -z ${SPARK_HOME+x} ]; then
   SPARK_CLASSPATH="$SPARK_HOME/conf:$SPARK_CLASSPATH";
 fi
 
-if [ -n "$PYSPARK_FILES" ]; then
-    PYTHONPATH="$PYTHONPATH:$PYSPARK_FILES"
-fi
-
-PYSPARK_ARGS=""
-if [ -n "$PYSPARK_APP_ARGS" ]; then
-    PYSPARK_ARGS="$PYSPARK_APP_ARGS"
-fi
-
-R_ARGS=""
-if [ -n "$R_APP_ARGS" ]; then
-    R_ARGS="$R_APP_ARGS"
-fi
-
-
-case "$SPARK_K8S_CMD" in
+case "$1" in
   driver)
     shift 1
     CMD=(
@@ -111,22 +76,6 @@ case "$SPARK_K8S_CMD" in
       --conf "spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS"
       --deploy-mode client
       "$@"
-    )
-    ;;
-  driver-py)
-    CMD=(
-      "$SPARK_HOME/bin/spark-submit"
-      --conf "spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS"
-      --deploy-mode client
-      "$@" $PYSPARK_PRIMARY $PYSPARK_ARGS
-    )
-    ;;
-    driver-r)
-    CMD=(
-      "$SPARK_HOME/bin/spark-submit"
-      --conf "spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS"
-      --deploy-mode client
-      "$@" $R_PRIMARY $R_ARGS
     )
     ;;
   executor)
@@ -147,7 +96,6 @@ case "$SPARK_K8S_CMD" in
       --podName $SPARK_EXECUTOR_POD_NAME
     )
     ;;
-  
    run)
     CMD=(
       /bin/bash -c 'clear;while true; do echo running; sleep 10; done'
@@ -155,9 +103,17 @@ case "$SPARK_K8S_CMD" in
     ;;
 
   *)
-    echo "Non-spark-on-k8s command provided, proceeding in pass-through mode..."
-    exec /bin/bash
+    # Non-spark-on-k8s command provided, proceeding in pass-through mode...
+    CMD=("$@")
+    ;;
 esac
 
+# Switch to spark if no USER specified (root by default) otherwise use USER directly
+switch_spark_if_root() {
+  if [ $(id -u) -eq 0 ]; then
+    echo gosu spark
+  fi
+}
+
 # Execute the container CMD under tini for better hygiene
-exec /usr/bin/tini -s -- "${CMD[@]}"
+exec $(switch_spark_if_root) /usr/bin/tini -s -- "${CMD[@]}"
