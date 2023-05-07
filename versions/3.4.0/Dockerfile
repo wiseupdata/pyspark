@@ -17,11 +17,13 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 ENV JAVA_OPEN_JDK="OpenJDK8U-jdk_x64_linux_hotspot_8u372b07"
 
-# Define en_US types for the environmet
-ENV LANGUAGE en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LC_CTYPE en_US.UTF-8
-ENV LC_MESSAGES en_US.UTF-8
+# Spark env
+ENV SPARK_HOME=/opt/spark \
+    PYTHONPATH=$SPARK_HOME/python:${SPARK_HOME}/python/lib/pyspark.zip:$SPARK_HOME/python/lib/py4j-0.10.9.7-src.zip \
+    PYSPARK_PYTHON=/usr/local/bin/python \
+    PYSPARK_DRIVER_PYTHON=/usr/local/bin/python \
+    PYLIB=$SPARK_HOME/python/lib
+
 
 ARG spark_uid=185
 
@@ -115,13 +117,6 @@ RUN set -ex; \
     rm -rf "$SPARK_TMP";
     
 
-##############################################################################
-RUN echo "Setting the Spark application to the users"
-##############################################################################
-
-RUN export SPARK_HOME=/opt/spark
-ENV SPARK_HOME=/opt/spark
-
 # Add Spark bin directory to PATH
 ENV PATH=$PATH:$SPARK_HOME/bin
 
@@ -131,37 +126,13 @@ RUN ln -s $SPARK_HOME/bin/spark-shell /usr/local/bin/spark && \
 
 
 ##############################################################################
-RUN echo "Setting Spark variables for all user"
-##############################################################################
-# RUN echo "source /etc/profile" >> /etc/bash.bashrc
-# TODO: Not working in Ubuntu 23, could be anything, try to fix it in the future to not be so verbose in the code as the next lines!
-
-# Spark envs to all Bourne-compatible shells.
-RUN echo " " >> /etc/profile && \
-    echo "export SPARK_HOME=/opt/spark" >> /etc/profile && \
-    echo "export PYTHONPATH=$SPARK_HOME/python:${SPARK_HOME}/python/lib/pyspark.zip:$SPARK_HOME/python/lib/py4j-0.10.9.7-src.zip" >> /etc/profile && \
-    echo "export PYSPARK_PYTHON=/usr/local/bin/python" >> /etc/profile && \
-    echo "export PYSPARK_DRIVER_PYTHON=/usr/local/bin/python" >> /etc/profile && \
-    echo "export PYLIB=$SPARK_HOME/python/lib" >> /etc/profile && \
-    echo " " >> /etc/profile
-
-# Spark envs to all bashrc shells.
-RUN echo " " >> /etc/bash.bashrc && \
-    echo "export SPARK_HOME=/opt/spark" >> /etc/bash.bashrc && \
-    echo "export PYTHONPATH=$SPARK_HOME/python:${SPARK_HOME}/python/lib/pyspark.zip:$SPARK_HOME/python/lib/py4j-0.10.9.7-src.zip" >> /etc/bash.bashrc  && \
-    echo "export PYSPARK_PYTHON=/usr/local/bin/python" >> /etc/bash.bashrc && \
-    echo "export PYSPARK_DRIVER_PYTHON=/usr/local/bin/python" >> /etc/bash.bashrc && \
-    echo "export PYLIB=$SPARK_HOME/python/lib" >> /etc/bash.bashrc && \
-    echo " " >> /etc/bash.bashrc
-
-
-##############################################################################
 RUN echo "Installing Kubectl - Official steps"
 ##############################################################################
 RUN curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
 RUN echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 RUN sudo apt-get update -y
 RUN apt-get install -y kubectl
+
 
 ##############################################################################
 RUN echo "Installing support to R - Official steps"
