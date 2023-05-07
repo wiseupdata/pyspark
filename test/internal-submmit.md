@@ -1,7 +1,7 @@
 
 Run the container
 ```bash
-docker run -it --name spark --rm wiseupdata/pyspark:3.4.0
+docker run -it --name spark --rm wiseupdata/pyspark:3.4.0 bash
 ```
 
 
