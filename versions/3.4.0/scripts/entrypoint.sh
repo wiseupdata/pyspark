@@ -1,4 +1,23 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+# echo commands to the terminal output
+set -ex
 
 # Check whether there is a passwd entry for the container UID
 myuid=$(id -u)
@@ -34,10 +53,13 @@ if [ -z "$JAVA_HOME" ]; then
   JAVA_HOME=$(java -XshowSettings:properties -version 2>&1 > /dev/null | grep 'java.home' | awk '{print $3}')
 fi
 
-
 SPARK_CLASSPATH="$SPARK_CLASSPATH:${SPARK_HOME}/jars/*"
-env | grep SPARK_JAVA_OPT_ | sort -t_ -k4 -n | sed 's/[^=]*=\(.*\)/\1/g' > /tmp/java_opts.txt
-readarray -t SPARK_EXECUTOR_JAVA_OPTS < /tmp/java_opts.txt
+env | grep SPARK_JAVA_OPT_ | sort -t_ -k4 -n | sed 's/[^=]*=\(.*\)/\1/g' > java_opts.txt
+if [ "$(command -v readarray)" ]; then
+  readarray -t SPARK_EXECUTOR_JAVA_OPTS < java_opts.txt
+else
+  SPARK_EXECUTOR_JAVA_OPTS=("${(@f)$(< java_opts.txt)}")
+fi
 
 if [ -n "$SPARK_EXTRA_CLASSPATH" ]; then
   SPARK_CLASSPATH="$SPARK_CLASSPATH:$SPARK_EXTRA_CLASSPATH"
@@ -137,13 +159,5 @@ case "$SPARK_K8S_CMD" in
     exec /bin/bash
 esac
 
-
-# Switch to spark if no USER specified (root by default) otherwise use USER directly
-switch_spark_if_root() {
-  if [ $(id -u) -eq 0 ]; then
-    echo gosu spark
-  fi
-}
-
 # Execute the container CMD under tini for better hygiene
-exec $(switch_spark_if_root) /usr/bin/tini -s -- "${CMD[@]}"
+exec /usr/bin/tini -s -- "${CMD[@]}"
