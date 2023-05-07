@@ -27,7 +27,7 @@ Pyspark docker images! 🚀️
 # Simple to use ❤️
 
 ```bash
-docker run -it wiseupdata/pyspark
+docker run -it wiseupdata/pyspark bash
 ```
 
 <br>
@@ -54,7 +54,8 @@ docker run -it wiseupdata/pyspark
 - Python 3.10 - Official
 - OpenJDK8 - [Official](https://adoptium.net/download/)
 - Kubernetes Ready and Tested!
-- User`ubuntu` with sudo, no password
+- User`spark` Restrict user NO sudo
+- User`Ubuntu` sudo
 - Simple shell, type:
   - `pyspark` and have fun with Python and Spark! ❤️
   - `spark` and have fun with Scala and Spark! 🫀
@@ -71,8 +72,8 @@ docker run -it wiseupdata/pyspark
 
 Example with specific version 💻:
 ```bash
-docker run -it wiseupdata/pyspark:3.4.0
-docker run -it wiseupdata/pyspark:3.4.0-ubuntu-22.04
+docker run -it wiseupdata/pyspark:3.4.0 bash
+docker run -it wiseupdata/pyspark:3.4.0-ubuntu-22.04 bash
 ```
 
 ### Inside made easy! 😍
@@ -167,7 +168,7 @@ docker build -t pyspark ./versions/3.4.0 --no-cache
 ```
 - Test the image
 ```bash
-docker run -it --rm pyspark
+docker run -it --rm pyspark bash
 ```
 
 - Force the running for debug mode - Useful for Kubernetes
@@ -206,7 +207,7 @@ docker push wiseupdata/pyspark:3.4.0-ubuntu-22.04-jdk8
 ### Test the image 🎢
 
 ```bash
-docker run -it wiseupdata/pyspark:3.4.0
+docker run -it wiseupdata/pyspark:3.4.0 bash
 ```
 </details>
 
@@ -268,6 +269,7 @@ docker run -it --entrypoint /bin/bash pyspark
 1. [Emojis](https://github.com/wiseupdata/emojis)
 1. [OpenJDK](https://adoptium.net/download/)
 1. [Apache Dockerfile](https://github.com/apache/spark/blob/master/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/Dockerfile)
+1. [Apache Dockerfile 2](https://github.com/apache/spark-docker/blob/master/3.4.0/scala2.12-java11-ubuntu/Dockerfile)
 1. [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
 
 
