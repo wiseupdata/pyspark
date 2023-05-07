@@ -57,7 +57,6 @@ RUN ln -s /opt/java/bin/java /usr/local/bin/java && \
 RUN echo "Java installed $(java -version)"
 
 
-
 ##############################################################################
 RUN echo "Creating the user spark and paths"
 ##############################################################################

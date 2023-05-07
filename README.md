@@ -269,6 +269,7 @@ docker run -it --entrypoint /bin/bash pyspark
 1. [Emojis](https://github.com/wiseupdata/emojis)
 1. [OpenJDK](https://adoptium.net/download/)
 1. [Apache Dockerfile](https://github.com/apache/spark/blob/master/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/Dockerfile)
+1. [Apache Dockerfile 2](https://github.com/apache/spark-docker/blob/master/3.4.0/scala2.12-java11-ubuntu/Dockerfile)
 1. [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
 
 
