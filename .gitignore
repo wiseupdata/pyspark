@@ -3,3 +3,4 @@ assets/scripts/scripts.sh
 assets/scripts/local.sh
 
 versions/*/jars
+examples/pyspark/tmp/
